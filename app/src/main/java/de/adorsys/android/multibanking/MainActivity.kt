@@ -1,4 +1,4 @@
-package de.adorsys.android.multibankinglib
+package de.adorsys.android.multibanking
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
