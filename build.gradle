@@ -17,15 +17,14 @@ allprojects {
     }
 }
 
-repositories {
-    google()
-    jcenter()
-}
-
 ext {
-    timberVersion = "4.6.1"
+    timberVersion = "4.7.0"
     supportLibVersion = "27.1.1"
-    retrofitVersion = "2.3.0"
+    constraintLayoutVersion = "1.1.0"
+    retrofitVersion = "2.4.0"
+    junitVersion = "4.12"
+    testRunnerVersion = "1.0.1"
+    espressoVersion = "3.0.1"
 }
 
 task clean(type: Delete) {
