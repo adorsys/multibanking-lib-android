@@ -17,6 +17,16 @@ allprojects {
     }
 }
 
+repositories {
+    google()
+    jcenter()
+}
+
+ext {
+    timberVersion = "4.6.1"
+    supportLibVersion = "27.1.1"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

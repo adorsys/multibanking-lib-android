@@ -1,0 +1,104 @@
+[
+  {
+    "id": "59dce9e6921bb411110cf0a0",
+    "bankAccountBalance": {
+      "readyHbciBalance": 1000.00
+    },
+    "bankName": "Demobank Fantasia AG",
+    "owner": "Erika Musterfrau",
+    "accountNumber": "12345678",
+    "iban": "DE12340905000001234567",
+    "type": "GIRO",
+    "blz": "12030400",
+    "userId": "e221b78d-c72f-4ea2-8b99-0025c433e8e9",
+    "bankAccessId": "59dce75a921bb400010cf095",
+    "bic": "FANTASI1S06",
+    "country": "DE",
+    "currency": "EUR",
+    "name": "Girokonto"
+  },
+  {
+    "id": "59dce9e6921bb411110cf0a1",
+    "bankAccountBalance": {
+      "readyHbciBalance": -100.00
+    },
+    "bankName": "Demobank Fantasia AG",
+    "owner": "Erika Musterfrau",
+    "accountNumber": "34567890",
+    "iban": "DE22340905000001234567",
+    "type": "CREDITCARD",
+    "blz": "12030400",
+    "userId": "e221b78d-c72f-4ea2-8b99-0025c433e8e9",
+    "bankAccessId": "59dce75a921bb400010cf095",
+    "bic": "FANTASI1S06",
+    "country": "DE",
+    "currency": "EUR",
+    "name": "DemoMasterCard"
+  },
+  {
+    "id": "59dce9e6921bb411110cf0a2",
+    "bankName": "Demobank Fantasia AG",
+    "owner": "Erika Musterfrau",
+    "accountNumber": "23456789",
+    "iban": "DE32340905000001234567",
+    "type": "FIXEDTERMDEPOSIT",
+    "blz": "12030400",
+    "userId": "e221b78d-c72f-4ea2-8b99-0025c433e8e9",
+    "bankAccessId": "59dce75a921bb400010cf095",
+    "bic": "FANTASI1S06",
+    "country": "DE",
+    "currency": "EUR",
+    "name": "Einlagen XY"
+  },
+  {
+    "id": "59dce9e6921bb411110cf0a3",
+    "bankAccountBalance": {
+      "readyHbciBalance": 869.00
+    },
+    "bankName": "Demobank Fantastico AG",
+    "owner": "Erika Musterfrau",
+    "accountNumber": "12345678",
+    "iban": "DE12340905000001234567",
+    "type": "GIRO",
+    "blz": "12030401",
+    "userId": "e221b78d-c72f-4ea2-8b99-0025c433e8e9",
+    "bankAccessId": "59dce75a921bb400010cf093",
+    "bic": "FANTASI1S05",
+    "country": "DE",
+    "currency": "EUR",
+    "name": "Girokonto"
+  },
+  {
+    "id": "59dce9e6921bb411110cf0a4",
+    "bankAccountBalance": {
+      "readyHbciBalance": -53.00
+    },
+    "bankName": "Demobank Fantastico AG",
+    "owner": "Erika Musterfrau",
+    "accountNumber": "34567890",
+    "iban": "DE22340905000001234567",
+    "type": "CREDITCARD",
+    "blz": "12030401",
+    "userId": "e221b78d-c72f-4ea2-8b99-0025c433e8e9",
+    "bankAccessId": "59dce75a921bb400010cf093",
+    "bic": "FANTASI1S05",
+    "country": "DE",
+    "currency": "EUR",
+    "name": "DemoMasterCard"
+  },
+  {
+    "id": "59dce9e6921bb411110cf0a5",
+    "bankName": "Demobank Fantastico AG",
+    "owner": "Erika Musterfrau",
+    "accountNumber": "23456789",
+    "iban": "DE32340905000001234567",
+    "type": "FIXEDTERMDEPOSIT",
+    "blz": "12030401",
+    "userId": "e221b78d-c72f-4ea2-8b99-0025c433e8e9",
+    "bankAccessId": "59dce75a921bb400010cf093",
+    "bic": "FANTASI1S05",
+    "country": "DE",
+    "currency": "EUR",
+    "name": "Einlagen XY"
+  }
+]

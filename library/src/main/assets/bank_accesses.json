@@ -1,0 +1,60 @@
+[
+  {
+    "id": "59dce75a921bb400010cf095",
+    "tanTransportTypes": [
+      {
+        "id": "997",
+        "name": "Indiziertes TAN-Verfahren"
+      }
+    ],
+    "externalIdMap": {
+    },
+    "temporary": false,
+    "bankName": "Demobank Fantasia, AG",
+    "storeAnalytics": true,
+    "bankLogin": "000123456",
+    "_links": {
+      "accounts": {
+        "href": "https://multibanking-service.dev.adorsys.de/api/v1/bankaccesses/59dce75a921bb422010cf095/accounts"
+      },
+      "self": {
+        "href": "https://multibanking-service.dev.adorsys.de/api/v1/bankaccesses/59dce75a921bb422010cf095"
+      }
+    },
+    "bankCode": "12345678",
+    "userId": "e221b78d-c13f-4ea2-8b99-0025c434e8e9",
+    "storeBookings": true,
+    "storePin": true,
+    "categorizeBookings": true,
+    "bankLogin2": ""
+  },
+  {
+    "id": "59dce75a921bb400010cf093",
+    "tanTransportTypes": [
+      {
+        "id": "997",
+        "name": "Indiziertes TAN-Verfahren"
+      }
+    ],
+    "externalIdMap": {
+    },
+    "temporary": false,
+    "bankName": "Demobank Fantastico, AG",
+    "storeAnalytics": true,
+    "bankLogin": "000123456",
+    "_links": {
+      "accounts": {
+        "href": "https://multibanking-service.dev.adorsys.de/api/v1/bankaccesses/59dce75a921bb422010cf0953/accounts"
+      },
+      "self": {
+        "href": "https://multibanking-service.dev.adorsys.de/api/v1/bankaccesses/59dce75a921bb422010cf093"
+      }
+    },
+    "bankCode": "23456789",
+    "userId": "e221b78d-c13f-4ea2-8b99-0025c434e8f9",
+    "storeBookings": true,
+    "storePin": false,
+    "categorizeBookings": true,
+    "bankLogin2": ""
+  }
+]
