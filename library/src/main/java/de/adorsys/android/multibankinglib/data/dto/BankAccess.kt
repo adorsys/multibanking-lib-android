@@ -10,6 +10,5 @@ data class BankAccess(val temporary: Boolean = false,
                       val tanTransportTypes: List<TanTransportTypesItem>?,
                       val userId: String = "",
                       val storePin: Boolean = false,
-                      val externalIdMap: ExternalIdMap,
                       val categorizeBookings: Boolean = false,
                       val id: String = "")
