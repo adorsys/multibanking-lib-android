@@ -1,3 +1,3 @@
-package <default> (/Users/meric/Development/multibanking-lib-android/library/src/test/java)
+package de.adorsys.android.multibankinglib.data.dto
 
 data class BookingCategory(val bookingCategory: BookingCategory)

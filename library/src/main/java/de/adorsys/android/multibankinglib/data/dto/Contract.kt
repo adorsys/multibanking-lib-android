@@ -1,8 +1,8 @@
-package <default> (/Users/meric/Development/multibanking-lib-android/library/src/test/java)
+package de.adorsys.android.multibankinglib.data.dto
 
 data class Contract(val mandateReference: String = "",
-                    val hotline: Null = null,
-                    val logo: Null = null,
+                    val hotline: String = "",
+                    val logo: String = "",
                     val interval: String = "",
-                    val email: Null = null,
-                    val homepage: Null = null)
+                    val email: String = "",
+                    val homepage: String = "")
