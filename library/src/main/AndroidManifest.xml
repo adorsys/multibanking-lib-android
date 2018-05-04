@@ -1,2 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.adorsys.android.multibankinglib"/>
+    package="de.adorsys.android.multibankinglib">
+
+    <application android:label="@string/app_name">
+        <provider
+            android:name=".MultiBankingProvider"
+            android:authorities="${applicationId}.de.adorsys.android.multibankinlib"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+</manifest>

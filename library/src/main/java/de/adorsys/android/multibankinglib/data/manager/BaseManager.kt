@@ -1,10 +1,14 @@
 package de.adorsys.android.multibankinglib.data.manager
 
-import android.content.Context
 import de.adorsys.android.multibankinglib.JsonUtils
+import de.adorsys.android.multibankinglib.MultiBankingProvider.Companion.context
 
 interface BaseManager {
-    fun getJsonString(context: Context, jsonPath: String): String? {
-        return JsonUtils.getJsonFromAssets(context, jsonPath)
+    fun getJsonString(jsonPath: String): String? {
+        return if (context.get() != null) {
+            JsonUtils.getJsonFromAssets(jsonPath)
+        } else {
+            null
+        }
     }
 }
