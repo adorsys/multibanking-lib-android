@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken
 import de.adorsys.android.multibankinglib.data.dto.Bank
 import de.adorsys.android.multibankinglib.data.dto.BankAccess
 import de.adorsys.android.multibankinglib.data.dto.BankAccounts
-import de.adorsys.android.multibankinglib.data.dto.Bookings
 
 class BankManagerMockImpl : BankManager {
 
@@ -23,17 +22,10 @@ class BankManagerMockImpl : BankManager {
         return Gson().fromJson<List<BankAccess>>(jsonString, bankAccessObject).orEmpty()
     }
 
-    override fun getBankAccounts(): List<BankAccounts>{
+    override fun getBankAccounts(): List<BankAccounts> {
         val jsonString = getJsonString("bank_accounts.json")
 
-        val bankAccountsObject = object: TypeToken<List<BankAccounts>>() {}.type
+        val bankAccountsObject = object : TypeToken<List<BankAccounts>>() {}.type
         return Gson().fromJson<List<BankAccounts>>(jsonString, bankAccountsObject).orEmpty()
-    }
-
-    override fun getBookings(): List<Bookings> {
-        val jsonString = getJsonString("bookings.json")
-
-        val bookingsObject = object : TypeToken<List<Bookings>>() {}.type
-        return Gson().fromJson<List<Bookings>>(jsonString, bookingsObject).orEmpty()
     }
 }
