@@ -1,4 +1,4 @@
-package de.adorsys.android.multibankinglib.manager
+package de.adorsys.android.multibankinglib.provider
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -6,9 +6,8 @@ import de.adorsys.android.multibankinglib.JsonUtils.convertJsonToObject
 import de.adorsys.android.multibankinglib.JsonUtils.getJsonString
 import de.adorsys.android.multibankinglib.dto.Booking
 
-class BookingsManagerMockImpl : BookingsManager {
+class BookingsProviderMockImpl(private val moshi: Moshi) : BookingsProvider {
     override fun getBookings(): List<Booking>? {
-        val moshi: Moshi = Moshi.Builder().build()
         val jsonString = getJsonString("bookings.json")
 
         val type = Types.newParameterizedType(List::class.java, Booking::class.java)

@@ -3,7 +3,9 @@ package de.adorsys.android.multibankinglib.dto
 import com.squareup.moshi.Json
 import java.util.*
 
-data class BankAccountBase(val owner: String?,
+data class BankAccountBase(val id: String?,
+                           val bankAccessId: String?,
+                           val userId: String?, val owner: String?,
                            @Json(name = "bankAccountBalance")
                            val balance: String?,
                            val accountNumber: String?,
