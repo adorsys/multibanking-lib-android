@@ -30,6 +30,12 @@ dependencies {
     // Logging
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
+    // Koin Dependency Injection
+    implementation "org.koin:koin-android:$koinVersion"
+
+    // Secure Storage for safely storing credentials locally
+    implementation "de.adorsys.android:securestoragelibrary:${secureStorageVersion}"
+
     // Network Client
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
