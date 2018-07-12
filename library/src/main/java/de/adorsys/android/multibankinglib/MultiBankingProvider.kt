@@ -50,7 +50,6 @@ class MultiBankingProvider : ContentProvider() {
     }
 
     companion object {
-
         lateinit var context: WeakReference<Context>
     }
 }
