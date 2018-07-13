@@ -2,15 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion defaultCompileSdkVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion defaultMinSdkVersion
+        targetSdkVersion defaultTargetSdkVersion
+        versionCode defaultVersionCode
+        versionName defaultVersionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -30,11 +30,17 @@ dependencies {
     // Logging
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
+    // Koin Dependency Injection
+    implementation "org.koin:koin-android:$koinVersion"
+
+    // Secure Storage for safely storing credentials locally
+    implementation "de.adorsys.android:securestoragelibrary:${secureStorageVersion}"
+
     // Network Client
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
+    androidTestImplementation "androidx.test:runner:$androidXTestRunnerVersion"
     testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
 }
 

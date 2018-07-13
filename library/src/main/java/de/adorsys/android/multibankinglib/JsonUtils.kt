@@ -1,17 +1,28 @@
 package de.adorsys.android.multibankinglib
 
-import android.content.Context
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import de.adorsys.android.multibankinglib.config.Multibanking.app
 import timber.log.Timber
-import java.io.IOException
+import java.lang.reflect.ParameterizedType
 
 object JsonUtils {
-    fun getJsonFromAssets(context: Context, jsonPath: String): String? {
+    fun getJsonString(jsonPath: String): String? {
+        return JsonUtils.getJsonFromAssets(jsonPath)
+    }
+
+    fun <T> convertJsonToObject(moshi: Moshi, jsonString: String?, type: ParameterizedType): T? {
+        val adapter: JsonAdapter<T> = moshi.adapter(type)
+        return jsonString?.let { adapter.fromJson(it) }
+    }
+
+    private fun getJsonFromAssets(jsonPath: String): String? {
         return try {
-            val json = context.assets.open(jsonPath).bufferedReader().use{
+            val json = app.assets.open(jsonPath).bufferedReader().use {
                 it.readText()
             }
             json
-        } catch (ex: IOException) {
+        } catch (ex: Throwable) {
             Timber.e(ex)
             null
         }
