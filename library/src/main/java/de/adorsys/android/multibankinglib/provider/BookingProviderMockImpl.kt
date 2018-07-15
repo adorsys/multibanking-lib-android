@@ -6,7 +6,7 @@ import de.adorsys.android.multibankinglib.JsonUtils.convertJsonToObject
 import de.adorsys.android.multibankinglib.JsonUtils.getJsonString
 import de.adorsys.android.multibankinglib.dto.Booking
 
-class BookingsProviderMockImpl(private val moshi: Moshi) : BookingsProvider {
+class BookingProviderMockImpl(private val moshi: Moshi) : BookingProvider {
     override fun getBookings(): List<Booking>? {
         val jsonString = getJsonString("bookings.json")
 
