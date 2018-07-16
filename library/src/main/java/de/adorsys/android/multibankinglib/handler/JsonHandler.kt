@@ -2,7 +2,7 @@ package de.adorsys.android.multibankinglib.handler
 
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import de.adorsys.android.multibankinglib.config.Multibanking.app
+import de.adorsys.android.multibankinglib.Multibanking.app
 import timber.log.Timber
 import java.lang.reflect.ParameterizedType
 
