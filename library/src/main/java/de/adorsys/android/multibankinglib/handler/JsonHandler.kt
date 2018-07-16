@@ -1,4 +1,4 @@
-package de.adorsys.android.multibankinglib
+package de.adorsys.android.multibankinglib.handler
 
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -6,9 +6,9 @@ import de.adorsys.android.multibankinglib.config.Multibanking.app
 import timber.log.Timber
 import java.lang.reflect.ParameterizedType
 
-object JsonUtils {
+object JsonHandler {
     fun getJsonString(jsonPath: String): String? {
-        return JsonUtils.getJsonFromAssets(jsonPath)
+        return getJsonFromAssets(jsonPath)
     }
 
     fun <T> convertJsonToObject(moshi: Moshi, jsonString: String?, type: ParameterizedType): T? {

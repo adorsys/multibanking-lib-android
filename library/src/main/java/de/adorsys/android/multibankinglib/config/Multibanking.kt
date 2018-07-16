@@ -2,6 +2,7 @@ package de.adorsys.android.multibankinglib.config
 
 import android.app.Application
 import com.squareup.moshi.Moshi
+import de.adorsys.android.multibankinglib.handler.MultibankingErrorHandler
 import de.adorsys.android.multibankinglib.provider.*
 import de.adorsys.android.securestoragelibrary.SecurePreferences
 import okhttp3.Cache
@@ -16,24 +17,36 @@ object Multibanking {
 
     lateinit var app: Application
 
-    private lateinit var baseUrl: String
     private lateinit var bankProvider: BankProvider
     private lateinit var bankAccessProvider: BankAccessProvider
     private lateinit var bankAccountProvider: BankAccountProvider
     private lateinit var bookingProvider: BookingProvider
 
-    fun init(app: Application, baseUrl: String, endpoints: Map<Endpoint, String>, mock: Boolean = false) {
+    interface ErrorHandler {
+        fun onError(error: String?, httpCode: Int?)
+    }
+
+    fun init(app: Application,
+             baseUrl: String,
+             endpoints: Map<Endpoint, String>,
+             errorHandler: ErrorHandler? = null,
+             mock: Boolean = false) {
+
         this.app = app
-        this.baseUrl = baseUrl
 
         if (mock) {
             val moshi = Moshi.Builder().build()
             buildMockProviders(moshi, endpoints)
         } else {
             val httpClient = buildHttpClient()
-            val retrofit = buildRetrofit(httpClient)
-            buildProviders(retrofit, endpoints)
+            val retrofit = buildRetrofit(httpClient, baseUrl)
+            val multibankingErrorHandler = buildErrorHandler(errorHandler)
+            buildProviders(retrofit, multibankingErrorHandler, endpoints)
         }
+    }
+
+    private fun buildErrorHandler(errorHandler: ErrorHandler?): MultibankingErrorHandler {
+        return MultibankingErrorHandler(errorHandler)
     }
 
     fun updateAuthentication(authHeaderKey: String, authHeaderValue: String) {
@@ -60,9 +73,9 @@ object Multibanking {
         return httpClientBuilder.build()
     }
 
-    private fun buildRetrofit(httpClient: OkHttpClient): Retrofit =
+    private fun buildRetrofit(httpClient: OkHttpClient, baseUrl: String): Retrofit =
             Retrofit.Builder()
-                    .baseUrl(Multibanking.baseUrl)
+                    .baseUrl(baseUrl)
                     .addConverterFactory(MoshiConverterFactory.create())
                     .client(httpClient)
                     .build()
@@ -78,13 +91,13 @@ object Multibanking {
                 }
             }
 
-    private fun buildProviders(retrofit: Retrofit, endpoints: Map<Endpoint, String>) =
-            endpoints.forEach { (endpoint, url) ->
+    private fun buildProviders(retrofit: Retrofit, multibankingErrorHandler: MultibankingErrorHandler, endpoints: Map<Endpoint, String>) =
+            endpoints.forEach { (endpoint, resourcePath) ->
                 when (endpoint) {
-                    Endpoint.BANK -> bankProvider = BankProviderImpl(retrofit, url)
-                    Endpoint.BANK_ACCESS -> bankAccessProvider = BankAccessProviderImpl(retrofit, url)
-                    Endpoint.BANK_ACCOUNT -> bankAccountProvider = BankAccountProviderImpl(retrofit, url)
-                    Endpoint.BOOKING -> bookingProvider = BookingProviderImpl(retrofit, url)
+                    Endpoint.BANK -> bankProvider = BankProviderImpl(retrofit, resourcePath, multibankingErrorHandler)
+                    Endpoint.BANK_ACCESS -> bankAccessProvider = BankAccessProviderImpl(retrofit, resourcePath, multibankingErrorHandler)
+                    Endpoint.BANK_ACCOUNT -> bankAccountProvider = BankAccountProviderImpl(retrofit, resourcePath, multibankingErrorHandler)
+                    Endpoint.BOOKING -> bookingProvider = BookingProviderImpl(retrofit, resourcePath, multibankingErrorHandler)
                     Endpoint.OTHER -> TODO("generic provider creation is not yet supported")
                 }
             }
