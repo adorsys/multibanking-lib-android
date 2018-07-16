@@ -1,5 +1,6 @@
 package de.adorsys.android.multibankinglib.config
 
+import de.adorsys.android.multibankinglib.Multibanking
 import de.adorsys.android.securestoragelibrary.SecurePreferences
 import okhttp3.Interceptor
 import okhttp3.Request

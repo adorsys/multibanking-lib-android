@@ -1,6 +1,6 @@
 package de.adorsys.android.multibankinglib.handler
 
-import de.adorsys.android.multibankinglib.config.Multibanking
+import de.adorsys.android.multibankinglib.Multibanking
 import org.json.JSONObject
 import retrofit2.Response
 

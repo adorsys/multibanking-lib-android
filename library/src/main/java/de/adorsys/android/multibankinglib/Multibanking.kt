@@ -1,7 +1,10 @@
-package de.adorsys.android.multibankinglib.config
+package de.adorsys.android.multibankinglib
 
 import android.app.Application
 import com.squareup.moshi.Moshi
+import de.adorsys.android.multibankinglib.config.Endpoint
+import de.adorsys.android.multibankinglib.config.RequestInterceptor
+import de.adorsys.android.multibankinglib.config.TokenAuthenticator
 import de.adorsys.android.multibankinglib.handler.MultibankingErrorHandler
 import de.adorsys.android.multibankinglib.provider.*
 import de.adorsys.android.securestoragelibrary.SecurePreferences
@@ -32,7 +35,7 @@ object Multibanking {
              errorHandler: ErrorHandler? = null,
              mock: Boolean = false) {
 
-        this.app = app
+        Multibanking.app = app
 
         if (mock) {
             val moshi = Moshi.Builder().build()
@@ -43,10 +46,6 @@ object Multibanking {
             val multibankingErrorHandler = buildErrorHandler(errorHandler)
             buildProviders(retrofit, multibankingErrorHandler, endpoints)
         }
-    }
-
-    private fun buildErrorHandler(errorHandler: ErrorHandler?): MultibankingErrorHandler {
-        return MultibankingErrorHandler(errorHandler)
     }
 
     fun updateAuthentication(authHeaderKey: String, authHeaderValue: String) {
@@ -101,4 +100,7 @@ object Multibanking {
                     Endpoint.OTHER -> TODO("generic provider creation is not yet supported")
                 }
             }
+
+    private fun buildErrorHandler(errorHandler: ErrorHandler?): MultibankingErrorHandler =
+            MultibankingErrorHandler(errorHandler)
 }
