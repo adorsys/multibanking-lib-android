@@ -7,6 +7,6 @@ class MultibankingApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         // TODO add correct url
-        Multibanking.initialize(this, "https://")
+        Multibanking.init(this, "https://")
     }
 }
