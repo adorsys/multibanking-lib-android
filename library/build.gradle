@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven'
 
-group = 'com.github.jitpack'
+group = 'com.github.adorsys'
 
 android {
     compileSdkVersion defaultCompileSdkVersion
