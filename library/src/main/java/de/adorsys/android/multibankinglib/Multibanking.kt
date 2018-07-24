@@ -7,7 +7,6 @@ import de.adorsys.android.multibankinglib.config.RequestInterceptor
 import de.adorsys.android.multibankinglib.config.TokenAuthenticator
 import de.adorsys.android.multibankinglib.handler.MultibankingErrorHandler
 import de.adorsys.android.multibankinglib.provider.*
-import de.adorsys.android.securestoragelibrary.SecurePreferences
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -32,6 +31,7 @@ object Multibanking {
     fun init(app: Application,
              baseUrl: String,
              endpoints: Map<Endpoint, String>,
+             onAuthenticationAction: () -> Pair<String, String>,
              errorHandler: ErrorHandler? = null,
              mock: Boolean = false) {
 
@@ -41,27 +41,22 @@ object Multibanking {
             val moshi = Moshi.Builder().build()
             buildMockProviders(moshi, endpoints)
         } else {
-            val httpClient = buildHttpClient()
+            val httpClient = buildHttpClient(onAuthenticationAction)
             val retrofit = buildRetrofit(httpClient, baseUrl)
             val multibankingErrorHandler = buildErrorHandler(errorHandler)
             buildProviders(retrofit, multibankingErrorHandler, endpoints)
         }
     }
 
-    fun updateAuthentication(authHeaderKey: String, authHeaderValue: String) {
-        SecurePreferences.setValue(KEY_AUTH_HEADER_KEY, authHeaderKey)
-        SecurePreferences.setValue(KEY_AUTH_HEADER_VALUE, authHeaderValue)
-    }
 
-
-    private fun buildHttpClient(): OkHttpClient {
+    private fun buildHttpClient(onAuthenticationAction: () -> Pair<String, String>): OkHttpClient {
         val httpClientBuilder = OkHttpClient.Builder()
 
         httpClientBuilder.followRedirects(false)
         httpClientBuilder.followSslRedirects(false)
 
         httpClientBuilder.addInterceptor(RequestInterceptor())
-        httpClientBuilder.authenticator(TokenAuthenticator())
+        httpClientBuilder.authenticator(TokenAuthenticator(onAuthenticationAction))
 
         val httpCacheDirectory = File(app.cacheDir, "responses")
         val cacheSize = 100 * 1024 * 1024
