@@ -1,23 +1,25 @@
 package de.adorsys.android.multibankinglib.config
 
-import de.adorsys.android.multibankinglib.Multibanking
-import de.adorsys.android.securestoragelibrary.SecurePreferences
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import timber.log.Timber
 import java.io.IOException
 
-class RequestInterceptor : Interceptor {
+/* This interceptor is used for logging the current request and setting authentication headers. */
+class RequestInterceptor(private val onAuthenticationAction: () -> Pair<String, String>) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
-        val authHeaderKey = SecurePreferences.getStringValue(Multibanking.KEY_AUTH_HEADER_KEY, null)
-        val authHeaderValue = SecurePreferences.getStringValue(Multibanking.KEY_AUTH_HEADER_VALUE, null)
+        val header = onAuthenticationAction()
 
+        val authHeaderKey = header.first
+        val authHeaderValue = header.second
+
+        // Add authentication header
         val request =
-                if (!authHeaderValue.isNullOrBlank() && !authHeaderKey.isNullOrBlank()) {
-                    addAuthorizationHeader(originalRequest, authHeaderKey!!, authHeaderValue!!)
+                if (!authHeaderValue.isBlank() && !authHeaderKey.isBlank()) {
+                    addAuthorizationHeader(originalRequest, authHeaderKey, authHeaderValue)
                 } else {
                     originalRequest
                 }

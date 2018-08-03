@@ -6,7 +6,8 @@ import okhttp3.Response
 import okhttp3.Route
 
 
-class TokenAuthenticator(private val onAuthenticationAction: () -> Pair<String, String>) : Authenticator {
+/* This authenticator is used whenever the server sends and 401. */
+class FallbackAuthenticator(private val onAuthenticationAction: () -> Pair<String, String>) : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         val header = onAuthenticationAction()
 

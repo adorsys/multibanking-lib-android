@@ -4,7 +4,7 @@ import android.app.Application
 import com.squareup.moshi.Moshi
 import de.adorsys.android.multibankinglib.config.Endpoint
 import de.adorsys.android.multibankinglib.config.RequestInterceptor
-import de.adorsys.android.multibankinglib.config.TokenAuthenticator
+import de.adorsys.android.multibankinglib.config.FallbackAuthenticator
 import de.adorsys.android.multibankinglib.handler.MultibankingErrorHandler
 import de.adorsys.android.multibankinglib.provider.*
 import okhttp3.Cache
@@ -14,9 +14,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 
 object Multibanking {
-    internal const val KEY_AUTH_HEADER_KEY: String = "key_token_multibanking"
-    internal const val KEY_AUTH_HEADER_VALUE: String = "key_token_multibanking"
-
     lateinit var app: Application
 
     private lateinit var bankProvider: BankProvider
@@ -55,8 +52,8 @@ object Multibanking {
         httpClientBuilder.followRedirects(false)
         httpClientBuilder.followSslRedirects(false)
 
-        httpClientBuilder.addInterceptor(RequestInterceptor())
-        httpClientBuilder.authenticator(TokenAuthenticator(onAuthenticationAction))
+        httpClientBuilder.addInterceptor(RequestInterceptor(onAuthenticationAction))
+        httpClientBuilder.authenticator(FallbackAuthenticator(onAuthenticationAction))
 
         val httpCacheDirectory = File(app.cacheDir, "responses")
         val cacheSize = 100 * 1024 * 1024
