@@ -49,3 +49,30 @@ androidExtensions {
     experimental = true
 }
 
+ext {
+    bintrayRepo = 'adorsys'
+    bintrayName = 'multibanking-android'
+
+    publishedGroupId = 'de.adorsys.android'
+    libraryName = 'multibanking-android'
+    artifact = 'multibanking-android'
+
+    libraryDescription = 'securestoragelibrary'
+
+    siteUrl = 'https://www.adorsys.de/'
+    gitUrl = 'https://github.com/adorsys/multibanking-lib-android.git'
+
+    libraryVersion = "${defaultVersionName}"
+
+    developerId = 'andev'
+    developerName = 'Andev Adorsys'
+    developerEmail = 'adorsys.andev@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+//apply from: 'https://raw.githubusercontent.com/adorsys/jcenter-distribution/master/installv.gradle'
+apply from: 'https://raw.githubusercontent.com/adorsys/jcenter-distribution/master/bintrayv.gradle'
+
