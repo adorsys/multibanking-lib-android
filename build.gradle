@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-beta04'
+        classpath 'com.android.tools.build:gradle:3.2.0-rc02'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
@@ -28,7 +28,7 @@ ext {
     defaultBuildToolsVersion = "27.0.3"
 
     timberVersion = "4.7.0"
-    androidXVersion = "1.0.0-beta01"
+    androidXVersion = "1.0.0-rc01"
     androidXTestEspressoVersion = "3.1.0-alpha3"
     androidXTestRunnerVersion = "1.1.0-alpha3"
     constraintLayoutVersion = "1.1.2"
