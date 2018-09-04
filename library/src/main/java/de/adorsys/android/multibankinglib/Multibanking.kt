@@ -3,8 +3,8 @@ package de.adorsys.android.multibankinglib
 import android.app.Application
 import com.squareup.moshi.Moshi
 import de.adorsys.android.multibankinglib.config.Endpoint
-import de.adorsys.android.multibankinglib.config.RequestInterceptor
 import de.adorsys.android.multibankinglib.config.FallbackAuthenticator
+import de.adorsys.android.multibankinglib.config.RequestInterceptor
 import de.adorsys.android.multibankinglib.handler.MultibankingErrorHandler
 import de.adorsys.android.multibankinglib.provider.*
 import okhttp3.Cache
@@ -16,10 +16,10 @@ import java.io.File
 object Multibanking {
     lateinit var app: Application
 
-    private lateinit var bankProvider: BankProvider
-    private lateinit var bankAccessProvider: BankAccessProvider
-    private lateinit var bankAccountProvider: BankAccountProvider
-    private lateinit var bookingProvider: BookingProvider
+    lateinit var bankProvider: BankProvider
+    lateinit var bankAccessProvider: BankAccessProvider
+    lateinit var bankAccountProvider: BankAccountProvider
+    lateinit var bookingProvider: BookingProvider
 
     interface ErrorHandler {
         fun onError(error: String?, httpCode: Int?)
