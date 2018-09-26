@@ -4,5 +4,6 @@ import de.adorsys.android.multibankinglib.dto.Booking
 import kotlinx.coroutines.experimental.Deferred
 
 interface BookingProvider {
-    fun getBookings(): Deferred<List<Booking?>?>
+    fun getBookings(accessId: String, accountId: String): Deferred<List<Booking?>?>
+    fun getBooking(accessId: String, accountId: String, bookingId: String): Deferred<Booking?>
 }
