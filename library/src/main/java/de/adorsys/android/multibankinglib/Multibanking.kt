@@ -2,16 +2,29 @@ package de.adorsys.android.multibankinglib
 
 import android.app.Application
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Rfc3339DateJsonAdapter
 import de.adorsys.android.multibankinglib.config.Endpoint
 import de.adorsys.android.multibankinglib.config.FallbackAuthenticator
 import de.adorsys.android.multibankinglib.config.RequestInterceptor
 import de.adorsys.android.multibankinglib.handler.MultibankingErrorHandler
-import de.adorsys.android.multibankinglib.provider.*
+import de.adorsys.android.multibankinglib.provider.BankAccessProvider
+import de.adorsys.android.multibankinglib.provider.BankAccessProviderImpl
+import de.adorsys.android.multibankinglib.provider.BankAccessProviderMockImpl
+import de.adorsys.android.multibankinglib.provider.BankAccountProvider
+import de.adorsys.android.multibankinglib.provider.BankAccountProviderImpl
+import de.adorsys.android.multibankinglib.provider.BankAccountProviderMockImpl
+import de.adorsys.android.multibankinglib.provider.BankProvider
+import de.adorsys.android.multibankinglib.provider.BankProviderImpl
+import de.adorsys.android.multibankinglib.provider.BankProviderMockImpl
+import de.adorsys.android.multibankinglib.provider.BookingProvider
+import de.adorsys.android.multibankinglib.provider.BookingProviderImpl
+import de.adorsys.android.multibankinglib.provider.BookingProviderMockImpl
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
+import java.util.Date
 
 object Multibanking {
     lateinit var app: Application
@@ -35,7 +48,9 @@ object Multibanking {
         Multibanking.app = app
 
         if (mock) {
-            val moshi = Moshi.Builder().build()
+            val moshi = Moshi.Builder()
+                    .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
+                    .build()
             buildMockProviders(moshi, endpoints)
         } else {
             val httpClient = buildHttpClient(onAuthenticationAction)
@@ -44,7 +59,6 @@ object Multibanking {
             buildProviders(retrofit, multibankingErrorHandler, endpoints)
         }
     }
-
 
     private fun buildHttpClient(onAuthenticationAction: () -> Pair<String, String>): OkHttpClient {
         val httpClientBuilder = OkHttpClient.Builder()
