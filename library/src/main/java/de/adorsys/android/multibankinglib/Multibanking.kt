@@ -1,6 +1,7 @@
 package de.adorsys.android.multibankinglib
 
 import android.app.Application
+import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Rfc3339DateJsonAdapter
 import de.adorsys.android.multibankinglib.config.Endpoint
@@ -50,6 +51,7 @@ object Multibanking {
         if (mock) {
             val moshi = Moshi.Builder()
                     .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())
+                    .add(KotlinJsonAdapterFactory())
                     .build()
             buildMockProviders(moshi, endpoints)
         } else {
