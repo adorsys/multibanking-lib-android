@@ -1,7 +1,9 @@
 package de.adorsys.android.multibanking
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,5 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        mainViewPager.adapter = viewPagerAdapter
+        mainTabLayout.setupWithViewPager(mainViewPager)
     }
 }
