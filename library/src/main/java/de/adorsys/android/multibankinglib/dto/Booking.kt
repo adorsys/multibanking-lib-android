@@ -1,7 +1,7 @@
 package de.adorsys.android.multibankinglib.dto
 
 import com.squareup.moshi.Json
-import java.util.*
+import java.util.Date
 
 data class Booking(val id: String?,
                    @Json(name = "bookingDate") val date: Date?,
@@ -28,5 +28,5 @@ data class Booking(val id: String?,
                    @Json(name = "standingOrder") val isStandingOrder: Boolean?,
                    val text: String?,
                    val transactionCode: String?,
-                   val otherAccount: BankAccountBase?,
+                   val otherAccount: BankAccount?,
                    val bookingCategory: BookingCategory?)
