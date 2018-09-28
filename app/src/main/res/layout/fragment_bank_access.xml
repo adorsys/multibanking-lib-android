@@ -22,7 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Get Bank Access" />
+                android:text="@string/get_bank_access" />
 
             <Button
                 android:id="@+id/getBankAccessesButton"
@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Get Bank Accesses" />
+                android:text="@string/get_bank_accesses" />
 
         </LinearLayout>
 
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:text="Result here:" />
+            android:text="@string/result_here" />
 
     </LinearLayout>
 </ScrollView>

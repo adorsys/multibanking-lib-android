@@ -22,7 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Get Bank account" />
+                android:text="@string/get_bank_account" />
 
             <Button
                 android:id="@+id/getBankAccountsButton"
@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Get Bank accounts" />
+                android:text="@string/get_bank_accounts" />
 
         </LinearLayout>
 
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:text="Result here:" />
+            android:text="@string/result_here" />
 
     </LinearLayout>
 

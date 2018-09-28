@@ -20,7 +20,7 @@
             <Button
                 android:layout_width="0dp"
                 android:id="@+id/searchBankButton"
-                android:text="Search Bank"
+                android:text="@string/search_bank"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_height="wrap_content" />
@@ -29,7 +29,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:id="@+id/getBanksButton"
-                android:text="Get Banks"
+                android:text="@string/get_banks"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_height="wrap_content" />
 
@@ -37,7 +37,7 @@
                 android:layout_width="0dp"
                 android:id="@+id/getBankButton"
                 android:layout_weight="1"
-                android:text="Get Bank"
+                android:text="@string/get_bank"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_height="wrap_content" />
 
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:text="Result here:" />
+            android:text="@string/result_here" />
 
     </LinearLayout>
 </ScrollView>
