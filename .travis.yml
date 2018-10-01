@@ -49,7 +49,8 @@ before_install:
 #  - emulator -avd test -no-window &
 #  - travis_wait 20 android-wait-for-emulator
 #  - adb shell input keyevent 82 &
-#script:
+script:
 #  - ./gradlew connectedAndroidTest
+  - ./gradlew lint
 after_success:
   - ./bintray-upload.sh
