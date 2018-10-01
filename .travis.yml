@@ -1,6 +1,6 @@
 language: android
-dist: precise
-sudo: required
+dist: trusty
+
 group: edge
 jdk: oraclejdk8
 branches:
