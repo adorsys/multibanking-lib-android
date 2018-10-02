@@ -1,10 +1,11 @@
 package de.adorsys.android.multibankinglib
 
-import androidx.test.InstrumentationRegistry
-import de.adorsys.android.multibanking.MultibankingApplication
 import de.adorsys.android.multibankinglib.config.Endpoint
+import org.robolectric.RuntimeEnvironment
 
-open class BaseInstrumentedTest {
+
+open class BaseUnitTest {
+
     val bankId = "59cdfc7eb0d0bc0001e1f7e5"
     val bankName = "Fantasia"
     val bankCode = "12345678"
@@ -15,10 +16,9 @@ open class BaseInstrumentedTest {
     val bookingId = "5aa63b277077e800014cc77f"
 
     init {
-        val multibankingApp =
-                InstrumentationRegistry.getTargetContext().applicationContext as MultibankingApplication
+        val app = RuntimeEnvironment.application
         Multibanking.init(
-                app = multibankingApp,
+                app = app,
                 baseUrl = "",
                 endpoints = mapOf(
                         Pair(Endpoint.BANK, "bank"),

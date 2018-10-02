@@ -1,20 +1,20 @@
 package de.adorsys.android.multibankinglib
 
-import androidx.test.runner.AndroidJUnit4
 import kotlinx.coroutines.experimental.runBlocking
+import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-@RunWith(AndroidJUnit4::class)
-class BankAccessesInstrumentedTest : BaseInstrumentedTest() {
+@RunWith(RobolectricTestRunner::class)
+class BankAccessesUnitTest : BaseUnitTest() {
 
     @Test
     fun getBankAccesses() {
 
         runBlocking {
             val listAccesses = Multibanking.bankAccessProvider.getBankAccesses(bankCode, bankLogin).await()
-
-            assert(listAccesses!!.isNotEmpty())
+            Assert.assertTrue(listAccesses.orEmpty().isNotEmpty())
         }
     }
 
@@ -22,8 +22,7 @@ class BankAccessesInstrumentedTest : BaseInstrumentedTest() {
     fun getBankAccess() {
         runBlocking {
             val bankAccess = Multibanking.bankAccessProvider.getBankAccess(bankAccessId).await()
-
-            assert(bankAccess!!.bankCode == bankCode)
+            Assert.assertEquals(bankAccess?.bankCode, bankCode)
         }
     }
 }

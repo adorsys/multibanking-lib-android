@@ -1,20 +1,19 @@
 package de.adorsys.android.multibankinglib
 
-import androidx.test.runner.AndroidJUnit4
 import kotlinx.coroutines.experimental.runBlocking
+import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-@RunWith(AndroidJUnit4::class)
-class BookingsInstrumentedTest : BaseInstrumentedTest() {
+@RunWith(RobolectricTestRunner::class)
+class BookingsUnitTest : BaseUnitTest() {
 
     @Test
     fun getBookings() {
-
         runBlocking {
             val listBookings = Multibanking.bookingProvider.getBookings(bankAccessId, bankAccountId).await()
-
-            assert(listBookings!!.isNotEmpty())
+            Assert.assertTrue(listBookings.orEmpty().isNotEmpty())
         }
     }
 
@@ -22,8 +21,7 @@ class BookingsInstrumentedTest : BaseInstrumentedTest() {
     fun getBooking() {
         runBlocking {
             val booking = Multibanking.bookingProvider.getBooking(bankAccessId, bankAccountId, bookingId).await()
-
-            assert(booking!!.userId == "e221b78d-c72f-4ea2-8b99-0025c433e8e9")
+            Assert.assertEquals(booking?.userId, "e221b78d-c72f-4ea2-8b99-0025c433e8e9")
         }
     }
 }

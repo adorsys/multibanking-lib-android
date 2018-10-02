@@ -25,7 +25,7 @@ class BanksAccessFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_bank_access, container, false)
 
         rootView.getBankAccessButton.setOnClickListener {
-            clearTextView()
+            bankAccessTextView.clear()
             // Get bankAccess by id
             GlobalScope.launch {
                 val bankAccess =
@@ -37,7 +37,7 @@ class BanksAccessFragment : Fragment() {
         }
 
         rootView.getBankAccessesButton.setOnClickListener { _ ->
-            clearTextView()
+            bankAccessTextView.clear()
             // Get bankAccesses by bankCode
             GlobalScope.launch {
                 val bankAccessList =
@@ -53,9 +53,5 @@ class BanksAccessFragment : Fragment() {
         }
 
         return rootView
-    }
-
-    private fun clearTextView() {
-        bankAccessTextView.text = ""
     }
 }

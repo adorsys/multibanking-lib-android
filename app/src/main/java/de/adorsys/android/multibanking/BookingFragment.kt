@@ -24,7 +24,7 @@ class BookingFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_booking, container, false)
 
         rootView.searchBookingButton.setOnClickListener {
-            clearTextView()
+            bookingTextView.clear()
             // Get specific booking by id
             GlobalScope.launch {
                 val bookingObject = Multibanking.bookingProvider.getBooking(
@@ -39,7 +39,7 @@ class BookingFragment : Fragment() {
         }
 
         rootView.searchBookingsButton.setOnClickListener { _ ->
-            clearTextView()
+            bookingTextView.clear()
             // Get all booking for bankAccount
             GlobalScope.launch {
                 val listBookings = Multibanking.bookingProvider.getBookings(
@@ -57,9 +57,5 @@ class BookingFragment : Fragment() {
         }
 
         return rootView
-    }
-
-    private fun clearTextView() {
-        bookingTextView.text = ""
     }
 }

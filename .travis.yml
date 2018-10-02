@@ -44,13 +44,7 @@ android:
     - $HOME/.gradle/wrapper
 before_install:
     - yes | sdkmanager "platforms;android-28"
-#before_script:
-#  - echo no | android create avd --force -n test -t "android-"$EMULATOR_API_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
-#  - emulator -avd test -no-window &
-#  - travis_wait 20 android-wait-for-emulator
-#  - adb shell input keyevent 82 &
 script:
-#  - ./gradlew connectedAndroidTest
-  - ./gradlew lint
+  - ./gradlew test
 after_success:
   - ./bintray-upload.sh

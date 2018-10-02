@@ -23,7 +23,7 @@ class BanksAccountFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_bank_account, container, false)
 
         rootView.getBankAccountButton.setOnClickListener {
-            clearTextView()
+            bankAccountTextView.clear()
             // Get bankAccount by accessId and bankAccountId
             GlobalScope.launch {
                 val bankAccount = Multibanking.bankAccountProvider.getBankAccount(bankAccessId, bankAccountId).await()
@@ -35,7 +35,7 @@ class BanksAccountFragment : Fragment() {
         }
 
         rootView.getBankAccountsButton.setOnClickListener { _ ->
-            clearTextView()
+            bankAccountTextView.clear()
             // Get all bankAccounts for specific bankAccess
             GlobalScope.launch {
                 val bankAccountList = Multibanking.bankAccountProvider.getBankAccounts(bankAccessId).await()
@@ -51,9 +51,5 @@ class BanksAccountFragment : Fragment() {
         }
 
         return rootView
-    }
-
-    private fun clearTextView() {
-        bankAccountTextView.text = ""
     }
 }
