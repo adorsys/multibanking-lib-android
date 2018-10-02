@@ -15,7 +15,7 @@ class BankAccountProviderMockImpl(private val moshi: Moshi) : BankAccountProvide
 
             val type = Types.newParameterizedType(List::class.java, BankAccount::class.java)
             val accountList = JsonHandler.convertJsonToObject<List<BankAccount?>?>(moshi, jsonString, type)
-            return@async accountList?.filter { account -> account!!.bankAccessId == accessId }
+            return@async accountList?.filter { account -> account?.bankAccessId == accessId }
         }
     }
 

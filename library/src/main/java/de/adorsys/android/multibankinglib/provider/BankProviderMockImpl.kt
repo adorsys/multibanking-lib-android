@@ -25,7 +25,7 @@ class BankProviderMockImpl(private val moshi: Moshi) : BankProvider {
 
             val type = Types.newParameterizedType(List::class.java, Bank::class.java)
             val bankList = convertJsonToObject<List<Bank?>>(moshi, jsonString, type)
-            return@async bankList?.find { bank -> bank!!.id == bankId }
+            return@async bankList?.find { bank -> bank?.id == bankId }
         }
     }
 
@@ -35,7 +35,7 @@ class BankProviderMockImpl(private val moshi: Moshi) : BankProvider {
             val type = Types.newParameterizedType(List::class.java, Bank::class.java)
             val bankList = convertJsonToObject<List<Bank?>>(moshi, jsonString, type)
 
-            return@async bankList?.filter { bank -> bank!!.name!!.contains(other = searchTerm, ignoreCase = true) }
+            return@async bankList?.filter { bank -> bank?.name.orEmpty().contains(other = searchTerm, ignoreCase = true) }
         }
     }
 }

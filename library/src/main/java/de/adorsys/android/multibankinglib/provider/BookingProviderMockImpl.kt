@@ -17,7 +17,7 @@ class BookingProviderMockImpl(private val moshi: Moshi) : BookingProvider {
             val type = Types.newParameterizedType(List::class.java, Booking::class.java)
             val bookingsList = convertJsonToObject<List<Booking?>?>(moshi, jsonString, type)
 
-            return@async bookingsList?.find { booking -> booking!!.accountId!! == accountId && booking.id == bookingId }
+            return@async bookingsList?.find { booking -> booking?.accountId == accountId && booking.id == bookingId }
         }
     }
 
@@ -28,7 +28,7 @@ class BookingProviderMockImpl(private val moshi: Moshi) : BookingProvider {
             val type = Types.newParameterizedType(List::class.java, Booking::class.java)
             val bookingsList = convertJsonToObject<List<Booking?>?>(moshi, jsonString, type)
             return@async bookingsList?.filter(fun(booking: Booking?): Boolean {
-                return booking!!.accountId!! == accountId
+                return booking?.accountId == accountId
             })
         }
     }
