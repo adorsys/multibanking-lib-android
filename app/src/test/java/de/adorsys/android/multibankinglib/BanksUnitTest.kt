@@ -10,7 +10,7 @@ import org.robolectric.RobolectricTestRunner
 class BanksUnitTest : BaseUnitTest() {
 
     @Test
-    fun getBanks() {
+    fun `Test getting all banks`() {
         runBlocking {
             val listBanks = Multibanking.bankProvider.getBanks().await()
             Assert.assertTrue(listBanks.orEmpty().isNotEmpty())
@@ -18,7 +18,7 @@ class BanksUnitTest : BaseUnitTest() {
     }
 
     @Test
-    fun getBank() {
+    fun `Test getting bank using specific bankId`() {
         runBlocking {
             val bank = Multibanking.bankProvider.getBank(bankId).await()
             Assert.assertEquals(bank?.code, bankCode)
@@ -26,7 +26,7 @@ class BanksUnitTest : BaseUnitTest() {
     }
 
     @Test
-    fun searchBanks() {
+    fun `Test searching for bank using bankName`() {
         runBlocking {
             val listBanks = Multibanking.bankProvider.searchBanks(bankName).await()
             Assert.assertTrue(listBanks.orEmpty().isNotEmpty())

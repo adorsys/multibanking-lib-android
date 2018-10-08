@@ -10,7 +10,7 @@ import org.robolectric.RobolectricTestRunner
 class BankAccountsUnitTest : BaseUnitTest() {
 
     @Test
-    fun getBankAccounts() {
+    fun `Test getting all bank accounts for specific bankAccess using bankAccessId`() {
 
         runBlocking {
             val listBankAccounts = Multibanking.bankAccountProvider.getBankAccounts(bankAccessId).await()
@@ -19,7 +19,7 @@ class BankAccountsUnitTest : BaseUnitTest() {
     }
 
     @Test
-    fun getBankAccount() {
+    fun `Test getting specific bankAccount using specific bankAccessId and bankAccountId`() {
         runBlocking {
             val bankAccount = Multibanking.bankAccountProvider.getBankAccount(bankAccessId, bankAccountId).await()
             Assert.assertEquals(bankAccount?.accountNumber, bankAccountNumber)
