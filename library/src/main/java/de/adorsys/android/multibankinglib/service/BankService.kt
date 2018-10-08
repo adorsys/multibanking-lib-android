@@ -8,4 +8,7 @@ import retrofit2.http.Url
 interface BankService {
     @GET
     fun getBanks(@Url resourcePath: String): Call<List<Bank?>?>
+
+    @GET
+    fun getBank(@Url resourcePath: String, bankId: String): Call<Bank?>
 }

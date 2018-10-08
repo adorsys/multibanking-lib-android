@@ -12,8 +12,12 @@ android {
         targetSdkVersion defaultTargetSdkVersion
         versionCode defaultVersionCode
         versionName defaultVersionName
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 
     buildTypes {
@@ -30,11 +34,26 @@ dependencies {
     implementation project(':library')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$androidXVersion"
+    implementation "com.android.support:appcompat-v7:$defaultBuildToolsVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "com.android.support:support-v4:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
 
-    androidTestImplementation "androidx.test:runner:$androidXTestRunnerVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidXTestEspressoVersion"
-    testImplementation "junit:junit:$junitVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}"
+
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    implementation "com.squareup.moshi:moshi-adapters:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+
+    testImplementation "junit:junit:$jUnitVersion"
+
+    testImplementation "org.robolectric:robolectric:$roboElectricVersion"
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }

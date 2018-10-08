@@ -13,22 +13,16 @@ cache:
     - ${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/
 env:
   global:
-    - ANDROID_API_LEVEL=27
-    - EMULATOR_API_LEVEL=21
-    - ANDROID_BUILD_TOOLS_VERSION=27.0.3
-    - ANDROID_ABI=armeabi-v7a
-    - ANDROID_TAG=google_apis
+    - ANDROID_API_LEVEL=28
+    - ANDROID_BUILD_TOOLS_VERSION=28.0.2
 android:
   components:
   - build-tools-$ANDROID_BUILD_TOOLS_VERSION
   - android-$ANDROID_API_LEVEL
-  - android-$EMULATOR_API_LEVEL
   - extra-android-m2repository
   - extra-google-m2repository
   - extra-android-support
   - extra-google-google_play_services
-  - sys-img-armeabi-v7a-google_apis-$ANDROID_API_LEVEL
-  - sys-img-armeabi-v7a-google_apis-$EMULATOR_API_LEVEL
   sudo: false
   licenses:
   - android-sdk-preview-license-.+
@@ -43,14 +37,8 @@ android:
     - $HOME/.gradle/native
     - $HOME/.gradle/wrapper
 before_install:
-    - yes | sdkmanager "platforms;android-27"
-before_script:
-  - ./code-check.sh
-  - echo no | android create avd --force -n test -t "android-"$EMULATOR_API_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-skin -no-window &
-  - travis_wait 20 android-wait-for-emulator
-  - adb shell input keyevent 82 &
+    - yes | sdkmanager "platforms;android-28"
 script:
-  - ./gradlew lint
+  - ./gradlew test
 after_success:
   - ./bintray-upload.sh

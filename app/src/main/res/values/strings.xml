@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">multibanking-lib</string>
+    <string name="result_here">Result here:</string>
+    <string name="search_bookings">Search Bookings</string>
+    <string name="search_booking">Search Booking</string>
+    <string name="get_bank_accounts">Get Bank accounts</string>
+    <string name="get_bank_account">Get Bank account</string>
+    <string name="get_bank_access">Get Bank Access</string>
+    <string name="get_bank_accesses">Get Bank Accesses</string>
+    <string name="search_bank">Search Bank</string>
+    <string name="get_banks">Get Banks</string>
+    <string name="get_bank">Get Bank</string>
 </resources>

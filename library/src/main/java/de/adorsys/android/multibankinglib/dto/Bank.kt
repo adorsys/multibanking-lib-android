@@ -8,6 +8,7 @@ data class Bank(val bankApi: BankApi?,
                 val bic: String?,
                 @Json(name = "blzHbci")
                 val blz: String?,
+                val id: String,
                 val name: String?,
                 val loginSettings: BankLoginSettings?,
                 val searchIndex: List<String?>?)
