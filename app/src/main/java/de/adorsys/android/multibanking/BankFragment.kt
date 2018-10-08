@@ -19,50 +19,52 @@ class BankFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_bank, container, false)
+        return inflater.inflate(R.layout.fragment_bank, container, false)
+    }
 
-        rootView.searchBankButton.setOnClickListener { _ ->
-            bankTextView.clear()
-            // Search for banks
-            GlobalScope.launch {
-                val listAccesses = Multibanking.bankProvider
-                        .searchBanks(BankConstants.bankName).await()
-                launch(Dispatchers.Main) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.searchBankButton.setOnClickListener { _ ->
+            GlobalScope.launch(Dispatchers.Main) {
+                bankTextView.clear()
+                // Search for banks
+                launch {
+                    val listAccesses = Multibanking.bankProvider
+                            .searchBanks(BankConstants.bankName).await()
                     var foundBanks = ""
                     listAccesses.orEmpty().forEach {
                         foundBanks += "${it?.name}\n"
                     }
-                    rootView.bankTextView.text = foundBanks
+                    view.bankTextView.text = foundBanks
                 }
             }
         }
 
-        rootView.getBanksButton.setOnClickListener { _ ->
+        view.getBanksButton.setOnClickListener { _ ->
             bankTextView.clear()
             // Load all banks
-            GlobalScope.launch {
-                val list = Multibanking.bankProvider.getBanks().await()
-                launch(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.Main) {
+                launch {
+                    val list = Multibanking.bankProvider.getBanks().await()
                     var foundBanks = ""
                     list.orEmpty().forEach {
                         foundBanks += "${it?.name}\n"
                     }
-                    rootView.bankTextView.text = foundBanks
+                    view.bankTextView.text = foundBanks
                 }
             }
         }
 
-        rootView.getBankButton.setOnClickListener {
+        view.getBankButton.setOnClickListener {
             bankTextView.clear()
             // Get specific bank by id
-            GlobalScope.launch {
-                val bank = Multibanking.bankProvider.getBank(bankId).await()
-                launch(Dispatchers.Main) {
-                    rootView.bankTextView.text = bank?.name
+            GlobalScope.launch(Dispatchers.Main) {
+                launch {
+                    val bank = Multibanking.bankProvider.getBank(bankId).await()
+                    view.bankTextView.text = bank?.name
                 }
             }
         }
-
-        return rootView
     }
 }

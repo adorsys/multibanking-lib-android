@@ -28,6 +28,9 @@ class BankProviderImpl(
     }
 
     override fun getBank(bankId: String): Deferred<Bank?> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return GlobalScope.async {
+            val response = bankService.getBank(resourcePath, bankId).execute()
+            return@async ResponseHandler.handleResponse(response, errorHandler)
+        }
     }
 }

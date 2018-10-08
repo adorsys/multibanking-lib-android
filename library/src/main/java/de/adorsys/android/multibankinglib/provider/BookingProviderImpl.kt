@@ -24,6 +24,9 @@ class BookingProviderImpl(
     }
 
     override fun getBooking(accessId: String, accountId: String, bookingId: String): Deferred<Booking?> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return GlobalScope.async {
+            val response = bookingService.getBooking(resourcePath, accessId, accountId, bookingId).execute()
+            return@async ResponseHandler.handleResponse(response, errorHandler)
+        }
     }
 }
