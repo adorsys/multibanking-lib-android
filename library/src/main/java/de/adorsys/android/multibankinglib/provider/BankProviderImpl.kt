@@ -16,15 +16,18 @@ class BankProviderImpl(
 
     private val bankService = retrofit.create(BankService::class.java)
 
-    override fun getBanks(): Deferred<List<Bank?>?> {
+    override fun getBanks(): Deferred<List<Bank?>> {
         return GlobalScope.async {
             val response = bankService.getBanks(resourcePath).execute()
-            return@async ResponseHandler.handleResponse(response, errorHandler)
+            return@async ResponseHandler.handleResponse(response, errorHandler).orEmpty()
         }
     }
 
-    override fun searchBanks(searchTerm: String): Deferred<List<Bank?>?> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun searchBanks(searchTerm: String): Deferred<List<Bank?>> {
+        return GlobalScope.async {
+            val response = bankService.getBanks(resourcePath).execute()
+            return@async ResponseHandler.handleResponse(response, errorHandler).orEmpty().filter { bank -> bank?.name.orEmpty().contains(other = searchTerm, ignoreCase = true) }
+        }
     }
 
     override fun getBank(bankId: String): Deferred<Bank?> {

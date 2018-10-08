@@ -33,7 +33,7 @@ class BankFragment : Fragment() {
                     val listAccesses = Multibanking.bankProvider
                             .searchBanks(BankConstants.bankName).await()
                     var foundBanks = ""
-                    listAccesses.orEmpty().forEach {
+                    listAccesses.forEach {
                         foundBanks += "${it?.name}\n"
                     }
                     view.bankTextView.text = foundBanks
@@ -48,7 +48,7 @@ class BankFragment : Fragment() {
                 launch {
                     val list = Multibanking.bankProvider.getBanks().await()
                     var foundBanks = ""
-                    list.orEmpty().forEach {
+                    list.forEach {
                         foundBanks += "${it?.name}\n"
                     }
                     view.bankTextView.text = foundBanks

@@ -44,7 +44,7 @@ class BanksAccessFragment : Fragment() {
                     val bankAccessList =
                             Multibanking.bankAccessProvider.getBankAccesses(BankConstants.bankCode, BankConstants.bankLogin).await()
                     var foundBankAccesses = ""
-                    bankAccessList.orEmpty().forEach {
+                    bankAccessList.forEach {
                         foundBankAccesses += "${it?.bankName} ${it?.id}\n"
                     }
                     view.bankAccessTextView.text = foundBankAccesses

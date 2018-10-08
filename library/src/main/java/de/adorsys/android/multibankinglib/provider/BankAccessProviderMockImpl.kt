@@ -11,14 +11,14 @@ import kotlinx.coroutines.experimental.async
 
 class BankAccessProviderMockImpl(private val moshi: Moshi) : BankAccessProvider {
 
-    override fun getBankAccesses(bankCode: String, bankLogin: String): Deferred<List<BankAccess?>?> {
+    override fun getBankAccesses(bankCode: String, bankLogin: String): Deferred<List<BankAccess?>> {
         return GlobalScope.async {
             val jsonString = getJsonString("bank_accesses.json")
 
             val type = Types.newParameterizedType(List::class.java, BankAccess::class.java)
             val bankAccessList = JsonHandler.convertJsonToObject<List<BankAccess?>?>(moshi, jsonString, type)
 
-            return@async bankAccessList?.filter { bankAccess -> bankAccess?.bankCode == bankCode }
+            return@async bankAccessList.orEmpty().filter { bankAccess -> bankAccess?.bankCode == bankCode }
         }
     }
 

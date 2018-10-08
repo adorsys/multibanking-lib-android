@@ -14,7 +14,7 @@ class BankAccessesUnitTest : BaseUnitTest() {
 
         runBlocking {
             val listAccesses = Multibanking.bankAccessProvider.getBankAccesses(bankCode, bankLogin).await()
-            Assert.assertTrue(listAccesses.orEmpty().isNotEmpty())
+            Assert.assertTrue(listAccesses.isNotEmpty())
         }
     }
 

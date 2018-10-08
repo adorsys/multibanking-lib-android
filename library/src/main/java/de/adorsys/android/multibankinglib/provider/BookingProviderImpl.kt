@@ -16,10 +16,10 @@ class BookingProviderImpl(
 
     private val bookingService = retrofit.create(BookingService::class.java)
 
-    override fun getBookings(accessId: String, accountId: String): Deferred<List<Booking?>?> {
+    override fun getBookings(accessId: String, accountId: String): Deferred<List<Booking?>> {
         return GlobalScope.async {
             val response = bookingService.getBookings(resourcePath, accessId, accountId).execute()
-            return@async ResponseHandler.handleResponse(response, errorHandler)
+            return@async ResponseHandler.handleResponse(response, errorHandler).orEmpty()
         }
     }
 

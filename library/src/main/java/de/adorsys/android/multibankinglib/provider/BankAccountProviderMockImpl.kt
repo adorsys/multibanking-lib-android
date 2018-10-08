@@ -9,13 +9,13 @@ import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.async
 
 class BankAccountProviderMockImpl(private val moshi: Moshi) : BankAccountProvider {
-    override fun getBankAccounts(accessId: String): Deferred<List<BankAccount?>?> {
+    override fun getBankAccounts(accessId: String): Deferred<List<BankAccount?>> {
         return GlobalScope.async {
             val jsonString = JsonHandler.getJsonString("bank_accounts.json")
 
             val type = Types.newParameterizedType(List::class.java, BankAccount::class.java)
             val accountList = JsonHandler.convertJsonToObject<List<BankAccount?>?>(moshi, jsonString, type)
-            return@async accountList?.filter { account -> account?.bankAccessId == accessId }
+            return@async accountList.orEmpty().filter { account -> account?.bankAccessId == accessId }
         }
     }
 
@@ -23,7 +23,7 @@ class BankAccountProviderMockImpl(private val moshi: Moshi) : BankAccountProvide
         return GlobalScope.async {
             val bankAccounts = getBankAccounts(accessId).await()
 
-            return@async bankAccounts?.find { account -> account?.bankAccessId == accessId && account.id == accountId }
+            return@async bankAccounts.find { account -> account?.bankAccessId == accessId && account.id == accountId }
         }
     }
 

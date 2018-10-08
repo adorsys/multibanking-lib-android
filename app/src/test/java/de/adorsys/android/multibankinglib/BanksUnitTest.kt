@@ -13,7 +13,7 @@ class BanksUnitTest : BaseUnitTest() {
     fun `Test getting all banks`() {
         runBlocking {
             val listBanks = Multibanking.bankProvider.getBanks().await()
-            Assert.assertTrue(listBanks.orEmpty().isNotEmpty())
+            Assert.assertTrue(listBanks.isNotEmpty())
         }
     }
 
@@ -29,7 +29,7 @@ class BanksUnitTest : BaseUnitTest() {
     fun `Test searching for bank using bankName`() {
         runBlocking {
             val listBanks = Multibanking.bankProvider.searchBanks(bankName).await()
-            Assert.assertTrue(listBanks.orEmpty().isNotEmpty())
+            Assert.assertTrue(listBanks.isNotEmpty())
         }
     }
 }

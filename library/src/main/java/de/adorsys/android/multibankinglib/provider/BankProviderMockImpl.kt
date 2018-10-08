@@ -10,12 +10,12 @@ import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.async
 
 class BankProviderMockImpl(private val moshi: Moshi) : BankProvider {
-    override fun getBanks(): Deferred<List<Bank?>?> {
+    override fun getBanks(): Deferred<List<Bank?>> {
         return GlobalScope.async {
             val jsonString = getJsonString("banks.json")
 
             val type = Types.newParameterizedType(List::class.java, Bank::class.java)
-            return@async convertJsonToObject<List<Bank?>>(moshi, jsonString, type)
+            return@async convertJsonToObject<List<Bank?>>(moshi, jsonString, type).orEmpty()
         }
     }
 
@@ -29,13 +29,13 @@ class BankProviderMockImpl(private val moshi: Moshi) : BankProvider {
         }
     }
 
-    override fun searchBanks(searchTerm: String): Deferred<List<Bank?>?> {
+    override fun searchBanks(searchTerm: String): Deferred<List<Bank?>> {
         return GlobalScope.async {
             val jsonString = getJsonString("banks.json")
             val type = Types.newParameterizedType(List::class.java, Bank::class.java)
             val bankList = convertJsonToObject<List<Bank?>>(moshi, jsonString, type)
 
-            return@async bankList?.filter { bank -> bank?.name.orEmpty().contains(other = searchTerm, ignoreCase = true) }
+            return@async bankList.orEmpty().filter { bank -> bank?.name.orEmpty().contains(other = searchTerm, ignoreCase = true) }
         }
     }
 }

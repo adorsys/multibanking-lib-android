@@ -47,7 +47,7 @@ class BookingFragment : Fragment() {
                             accessId = BankConstants.bankAccessId,
                             accountId = BankConstants.bankAccountId).await()
                     var foundBookings = ""
-                    listBookings.orEmpty().forEach {
+                    listBookings.forEach {
                         foundBookings += "€${it?.amount}, id: ${it?.id}\n"
                     }
                     view.bookingTextView.text = foundBookings

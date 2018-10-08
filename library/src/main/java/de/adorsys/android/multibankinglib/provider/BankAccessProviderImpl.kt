@@ -16,10 +16,10 @@ class BankAccessProviderImpl(
 
     private val bankAccessService = retrofit.create(BankAccessService::class.java)
 
-    override fun getBankAccesses(bankCode: String, bankLogin: String): Deferred<List<BankAccess?>?> {
+    override fun getBankAccesses(bankCode: String, bankLogin: String): Deferred<List<BankAccess?>> {
         return GlobalScope.async {
             val response = bankAccessService.getBankAccesses(resourcePath).execute()
-            return@async ResponseHandler.handleResponse(response, multibankingErrorHandler)
+            return@async ResponseHandler.handleResponse(response, multibankingErrorHandler).orEmpty()
         }
     }
 

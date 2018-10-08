@@ -21,13 +21,13 @@ class BookingProviderMockImpl(private val moshi: Moshi) : BookingProvider {
         }
     }
 
-    override fun getBookings(accessId: String, accountId: String): Deferred<List<Booking?>?> {
+    override fun getBookings(accessId: String, accountId: String): Deferred<List<Booking?>> {
         return GlobalScope.async {
             val jsonString = getJsonString("bookings.json")
 
             val type = Types.newParameterizedType(List::class.java, Booking::class.java)
-            val bookingsList = convertJsonToObject<List<Booking?>?>(moshi, jsonString, type)
-            return@async bookingsList?.filter(fun(booking: Booking?): Boolean {
+            val bookingsList = convertJsonToObject<List<Booking?>>(moshi, jsonString, type)
+            return@async bookingsList.orEmpty().filter(fun(booking: Booking?): Boolean {
                 return booking?.accountId == accountId
             })
         }

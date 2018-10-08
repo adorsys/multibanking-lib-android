@@ -13,7 +13,7 @@ class BookingsUnitTest : BaseUnitTest() {
     fun `Test getting all bookings for specific account using specific bankAccessId and bankAccountId`() {
         runBlocking {
             val listBookings = Multibanking.bookingProvider.getBookings(bankAccessId, bankAccountId).await()
-            Assert.assertTrue(listBookings.orEmpty().isNotEmpty())
+            Assert.assertTrue(listBookings.isNotEmpty())
         }
     }
 
